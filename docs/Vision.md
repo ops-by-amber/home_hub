@@ -1,40 +1,118 @@
 # HomeHub Vision
 
-Version: 1.0
+**Project:** HomeHub
 
-Status: Draft
+**Version:** 1.0
+
+**Status:** Approved
+
+**Last Updated:** 2026-07-06
+
+**Author:** Amber Boudreau
 
 ---
 
 # Mission
 
-HomeHub is a local-first personal productivity and information dashboard designed to bring together the information, tools, and services a user relies on every day into a single, customizable workspace.
+HomeHub exists to reduce the mental effort required to manage everyday life.
 
-Rather than opening multiple applications to manage schedules, tasks, weather, email, transit, documents, and notes, HomeHub provides one unified interface that presents relevant information at the appropriate time.
+Modern life requires people to constantly switch between calendars, email, weather apps, transit planners, documents, notes, task managers, messaging platforms, and dozens of other tools. Every switch interrupts focus and increases cognitive load.
+
+HomeHub brings this information together into one intelligent, customizable workspace that surfaces the right information at the right time while remaining private, reliable, and accessible.
+
+The objective is not to replace every application. Instead, HomeHub serves as a central command center that connects them.
 
 ---
 
 # Vision Statement
 
-Build the operating system for everyday life.
+Create a personal operating system that helps people organize information, make better decisions, and spend less time searching for what they need.
 
-HomeHub should reduce cognitive load by organizing information, surfacing what matters when it matters, and automating repetitive tasks while respecting user privacy.
+HomeHub should become the first application users open in the morning and the last one they close at night.
 
 ---
 
-# Goals
+# Problem Statement
 
-The project aims to:
+Today's productivity tools are fragmented.
+
+Information lives across many separate services:
+
+- Calendars
+- Email
+- Notes
+- Documents
+- Transit
+- Weather
+- Tasks
+- Messaging
+- Cloud storage
+
+Users spend unnecessary time locating information instead of acting on it.
+
+Many dashboards attempt to solve this problem by displaying information, but few provide meaningful context or intelligent assistance.
+
+HomeHub aims to bridge that gap.
+
+---
+
+# Project Goals
+
+HomeHub will:
 
 - Reduce context switching.
-- Eliminate unnecessary clicks.
+- Reduce cognitive load.
 - Centralize daily information.
-- Make planning easier.
-- Provide intelligent reminders.
-- Minimize cognitive load.
-- Support accessibility.
-- Work reliably offline whenever possible.
-- Be modular and expandable.
+- Present information when it becomes relevant.
+- Respect user privacy.
+- Support accessibility from the beginning.
+- Remain reliable even when external services fail.
+- Be highly customizable.
+- Grow through a modular plugin system.
+
+---
+
+# Design Pillars
+
+Every feature should satisfy these principles.
+
+## Useful
+
+Every feature must solve a real problem.
+
+Features should not exist simply because they are technically interesting.
+
+---
+
+## Simple
+
+Complexity should remain behind the scenes.
+
+The interface should remain clean, predictable, and easy to understand.
+
+---
+
+## Reliable
+
+Failure of one service should not prevent the rest of HomeHub from functioning.
+
+Users should always have access to local information.
+
+---
+
+## Private
+
+User data belongs to the user.
+
+Whenever possible, information should remain on the local device.
+
+Cloud services should only be used with the user's explicit permission.
+
+---
+
+## Extensible
+
+The architecture should allow new capabilities to be added without rewriting the application.
 
 ---
 
@@ -42,99 +120,77 @@ The project aims to:
 
 ## Local First
 
-Whenever practical, data should remain on the user's device.
+The application should continue working even when internet access is unavailable.
 
-Cloud services should only be used when necessary or explicitly enabled.
-
----
-
-## Privacy First
-
-User information belongs to the user.
-
-HomeHub should never collect unnecessary data.
-
-Authentication credentials should be stored securely.
+Cloud services enhance HomeHub but should not define it.
 
 ---
 
 ## Accessibility First
 
-Accessibility is a core requirement rather than an afterthought.
+Accessibility is a primary design requirement.
 
-The application should support:
+HomeHub should support:
 
-- keyboard navigation
-- screen readers
-- scalable text
-- high contrast themes
-- colorblind-friendly design
+- Screen readers
+- Keyboard-only navigation
+- High contrast themes
+- Scalable interface elements
+- Colorblind-friendly palettes
 
----
-
-## Modular Design
-
-Every major feature should be implemented as a module or plugin whenever practical.
-
-The core application should remain lightweight.
+Accessibility should be considered during design rather than added afterward.
 
 ---
 
-## Reliability
+## Plugin First
 
-The dashboard should continue functioning even if one service fails.
+Major features should be implemented as plugins whenever practical.
 
-For example:
-
-If the weather service is unavailable:
-
-- Calendar still works.
-- Transit still works.
-- Notes still work.
+The core application should remain lightweight and focused.
 
 ---
 
-## Simplicity
+## Progressive Enhancement
 
-The interface should prioritize clarity over decoration.
+The application should provide value immediately after installation.
 
-Information should appear only when useful.
+Additional integrations should improve functionality without becoming mandatory.
 
 ---
 
 # Target Users
 
-Primary
-
-People who want a single dashboard for managing daily life.
+Although anyone can use HomeHub, it is especially designed for people who benefit from reducing cognitive overhead.
 
 Examples include:
 
-- professionals
-- students
-- parents
-- neurodivergent users
-- accessibility users
-- productivity enthusiasts
+- Professionals
+- Students
+- Parents
+- Neurodivergent users
+- Accessibility users
+- Productivity enthusiasts
+- People managing complex schedules
 
 ---
 
-# Version 1.0 Features
+# Version 1.0 Objectives
 
-Version 1.0 focuses on creating a reliable daily dashboard.
+The first public release should include:
 
-Planned features include:
-
+- Dashboard framework
+- Plugin system
 - Clock
 - Weather
-- Google Calendar
+- Google Calendar integration
 - Daily agenda
 - Appointment notes
 - Transit planning
 - Leave-time reminders
 - Desktop notifications
-- Settings
-- Plugin framework
+- Settings management
+
+Version 1.0 should be complete, stable, and genuinely useful for day-to-day use.
 
 ---
 
@@ -142,37 +198,35 @@ Planned features include:
 
 Future versions may include:
 
-- Gmail
-- Google Drive
+- Gmail integration
+- Google Drive integration
 - AI assistant
 - Smart home integration
-- Package tracking
 - Finance dashboard
-- Health tracking
-- Habit tracking
+- Health dashboard
+- Package tracking
 - RSS feeds
 - Music controls
+- Household management
 - Custom widgets
-- Community plugins
+- Community-developed plugins
 
 ---
 
 # Success Criteria
 
-HomeHub is successful when:
+HomeHub succeeds when:
 
 - Users spend less time switching between applications.
-- Important information is available before it is needed.
-- Common daily tasks become faster.
-- The interface remains simple despite expanding functionality.
-- New modules can be added without changing the core application.
+- Important information appears before users need to search for it.
+- Daily planning becomes faster.
+- The interface remains understandable as new features are added.
+- The project remains maintainable over many years.
 
 ---
 
-# Project Philosophy
+# Guiding Philosophy
 
-HomeHub is intended to become a personal operating system rather than simply another dashboard.
+Technology should reduce mental effort rather than create it.
 
-Every feature should contribute toward reducing cognitive load, increasing awareness, and helping users make better day-to-day decisions.
-
-Whenever implementation decisions are uncertain, developers should choose the solution that best aligns with these goals.
+Every design decision should move HomeHub closer to becoming a trusted personal command center that helps people focus on living their lives instead of managing their software.
