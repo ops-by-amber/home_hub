@@ -140,3 +140,20 @@ h1 {
 .status-loading {
   color: #d7e2ea;
 }
+.card-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.card-list li {
+  padding-left: 0.15rem;
+}
+
+.card-meta {
+  display: block;
+  margin-top: 0.2rem;
+  color: #9fb3c8;
+  font-size: 0.9rem;
+}

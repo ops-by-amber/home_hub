@@ -13,10 +13,32 @@ type HealthResponse = {
   version: string
 }
 
+type DashboardItem = {
+  text: string
+  meta?: string | null
+}
+
+type DashboardSection = {
+  id: string
+  title: string
+  subtitle: string
+  items: DashboardItem[]
+}
+
+type TodayDashboardResponse = {
+  status: string
+  sections: DashboardSection[]
+}
+
 type BackendStatus =
   | { state: 'loading' }
   | { state: 'online'; data: HealthResponse }
   | { state: 'offline'; error: string }
+
+type DashboardStatus =
+  | { state: 'loading' }
+  | { state: 'ready'; data: TodayDashboardResponse }
+  | { state: 'error'; error: string }
 
 const API_BASE_URL = 'http://127.0.0.1:8000'
 
@@ -36,6 +58,10 @@ function DashboardCard({ title, subtitle, children }: DashboardCardProps) {
 
 function App() {
   const [backendStatus, setBackendStatus] = useState<BackendStatus>({
+    state: 'loading',
+  })
+
+  const [dashboardStatus, setDashboardStatus] = useState<DashboardStatus>({
     state: 'loading',
   })
 
@@ -65,7 +91,33 @@ function App() {
       }
     }
 
+    async function loadDashboard() {
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/dashboard/today`)
+
+        if (!response.ok) {
+          throw new Error(`Dashboard endpoint returned ${response.status}`)
+        }
+
+        const data = (await response.json()) as TodayDashboardResponse
+
+        setDashboardStatus({
+          state: 'ready',
+          data,
+        })
+      } catch (error) {
+        setDashboardStatus({
+          state: 'error',
+          error:
+            error instanceof Error
+              ? error.message
+              : 'Unknown dashboard loading error',
+        })
+      }
+    }
+
     void checkBackendHealth()
+    void loadDashboard()
   }, [])
 
   return (
@@ -82,14 +134,6 @@ function App() {
       </header>
 
       <section className="dashboard-grid" aria-label="HomeHub dashboard">
-        <DashboardCard title="Today" subtitle="Current day overview">
-          <ul>
-            <li>No calendar events loaded yet.</li>
-            <li>No urgent reminders loaded yet.</li>
-            <li>Backend scaffold is ready.</li>
-          </ul>
-        </DashboardCard>
-
         <DashboardCard title="System" subtitle="Local backend status">
           {backendStatus.state === 'loading' ? (
             <p className="status-loading">Checking backend connection...</p>
@@ -120,25 +164,38 @@ function App() {
           ) : null}
         </DashboardCard>
 
-        <DashboardCard title="Calendar" subtitle="Upcoming appointments">
-          <p>Calendar integration will be added later.</p>
-        </DashboardCard>
+        {dashboardStatus.state === 'loading' ? (
+          <DashboardCard title="Loading" subtitle="Dashboard data">
+            <p className="status-loading">Loading dashboard cards...</p>
+          </DashboardCard>
+        ) : null}
 
-        <DashboardCard title="Tasks" subtitle="Due and useful next actions">
-          <p>Task storage will be added after the local database layer exists.</p>
-        </DashboardCard>
+        {dashboardStatus.state === 'error' ? (
+          <DashboardCard title="Dashboard Error" subtitle="Data unavailable">
+            <p className="status-error">{dashboardStatus.error}</p>
+          </DashboardCard>
+        ) : null}
 
-        <DashboardCard title="Notes" subtitle="Event and household notes">
-          <p>Notes will support event-linked and recurring appointment notes.</p>
-        </DashboardCard>
-
-        <DashboardCard title="Weather" subtitle="Local forecast">
-          <p>Weather will start with mock data before live API integration.</p>
-        </DashboardCard>
-
-        <DashboardCard title="Transit" subtitle="Time-to-leave planning">
-          <p>Transit planning will depend on calendar locations and route data.</p>
-        </DashboardCard>
+        {dashboardStatus.state === 'ready'
+          ? dashboardStatus.data.sections.map((section) => (
+              <DashboardCard
+                key={section.id}
+                title={section.title}
+                subtitle={section.subtitle}
+              >
+                <ul className="card-list">
+                  {section.items.map((item) => (
+                    <li key={`${section.id}-${item.text}`}>
+                      <span>{item.text}</span>
+                      {item.meta ? (
+                        <span className="card-meta">{item.meta}</span>
+                      ) : null}
+                    </li>
+                  ))}
+                </ul>
+              </DashboardCard>
+            ))
+          : null}
       </section>
     </main>
   )
