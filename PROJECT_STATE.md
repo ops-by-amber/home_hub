@@ -407,3 +407,4 @@ The next assistant should continue from:
 ```text
 Milestone 2: Initial Application Scaffold
 ```
+Continue frontend cleanup after splitting API types and dashboard components. Confirm build passes, then commit if not already committed.
