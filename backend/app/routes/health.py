@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 
-from app.schemas import HealthResponse
+from app.database import check_database_health
+from app.schemas import DatabaseHealthResponse, HealthResponse
 
 router = APIRouter(tags=["system"])
 
@@ -19,3 +20,8 @@ def health_check() -> HealthResponse:
         service="homehub-backend",
         version="0.1.0",
     )
+
+
+@router.get("/health/database", response_model=DatabaseHealthResponse)
+def database_health_check() -> DatabaseHealthResponse:
+    return DatabaseHealthResponse(**check_database_health())

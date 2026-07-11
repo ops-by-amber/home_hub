@@ -7,6 +7,13 @@ class HealthResponse(BaseModel):
     version: str
 
 
+class DatabaseHealthResponse(BaseModel):
+    status: str
+    database: str
+    schema_version: str
+    path: str
+
+    
 class DashboardItem(BaseModel):
     text: str
     meta: str | None = None
