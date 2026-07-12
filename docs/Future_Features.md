@@ -382,6 +382,45 @@ Possible features:
 
 Status: Future candidate.
 
+### Smart Grocery and Pantry Assistant
+
+A future grocery assistant could help track household food and supply needs using grocery lists, pantry/fridge photos, and past shopping patterns.
+
+Possible features:
+
+- Grocery list card on the dashboard
+- Manual grocery list entry
+- Pantry and fridge inventory
+- Photo-based fridge/pantry review
+- Receipt history
+- Common item tracking
+- Low-stock suggestions
+- Budget-aware grocery planning
+- Household supplies tracking
+- Store-specific price notes
+- Reminder to replace frequently used items
+
+Example user request:
+
+```text
+Look at what is in my fridge and pantry and help me figure out what I need to buy this week.
+```
+
+Another example:
+
+```text
+Based on what I usually buy and what I have left, make a grocery list under $150.
+```
+
+Status: Future candidate.
+
+Reason deferred:
+
+This feature requires local storage, image handling, receipt parsing, inventory history, and possibly AI/computer vision. It should not block the initial scheduling assistant MVP.
+
+Privacy note:
+
+Fridge, pantry, receipt, and shopping data may reveal household routines, budget, dietary needs, health-related information, and family structure. This data should remain local unless the user explicitly enables an external AI or cloud service.
 ---
 
 ### Budget-Aware Shopping Support
